@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Acervo: cofrinho de porquinho; a moeda carrega as cores das categorias da cápsula. -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#d81b72"/>
+      <stop offset="1" stop-color="#6a0f43"/>
+    </linearGradient>
+    <radialGradient id="glowPink" cx="0.82" cy="0.18" r="0.6">
+      <stop offset="0" stop-color="#ff8fb8" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#ff5f92" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBlue" cx="0.12" cy="0.92" r="0.65">
+      <stop offset="0" stop-color="#a21caf" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#a21caf" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="0.3" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+    <radialGradient id="body" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#ffd3e0"/>
+      <stop offset="0.55" stop-color="#ff9dbb"/>
+      <stop offset="1" stop-color="#e5658f"/>
+    </radialGradient>
+    <linearGradient id="ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb6cb"/>
+      <stop offset="1" stop-color="#e86f98"/>
+    </linearGradient>
+    <radialGradient id="snout" cx="0.45" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffd0de"/>
+      <stop offset="1" stop-color="#f58bad"/>
+    </radialGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="coin">
+      <circle cx="512" cy="232" r="104"/>
+    </clipPath>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <clipPath id="tileClip"><rect x="32" y="32" width="960" height="960" rx="200"/></clipPath>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.26"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+
+  <!-- bloco de vidro -->
+  <rect x="32" y="32" width="960" height="960" rx="200" fill="url(#tile)"/>
+  <rect x="32" y="32" width="960" height="960" rx="200" fill="url(#glowPink)"/>
+  <rect x="32" y="32" width="960" height="960" rx="200" fill="url(#glowBlue)"/>
+  <rect x="33.5" y="33.5" width="957" height="957" rx="198.5" fill="none" stroke="url(#rim)" stroke-width="3"/>
+  <g clip-path="url(#tileClip)"><rect x="32" y="32" width="960" height="340" fill="url(#sheen)"/></g>
+  <circle cx="160" cy="250" r="36" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="4"/>
+  <circle cx="872" cy="808" r="52" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="4"/>
+  <circle cx="858" cy="790" r="10" fill="#ffffff" fill-opacity="0.25"/>
+
+  <g filter="url(#shadow)">
+    <!-- moeda com as cores das categorias, entrando na fenda -->
+    <g clip-path="url(#coin)">
+      <rect x="400" y="120" width="44" height="230" fill="#0a84ff"/>
+      <rect x="444" y="120" width="52" height="230" fill="#bf5af2"/>
+      <rect x="496" y="120" width="30" height="230" fill="#5e5ce6"/>
+      <rect x="526" y="120" width="34" height="230" fill="#ff9f0a"/>
+      <rect x="560" y="120" width="40" height="230" fill="#30d158"/>
+      <rect x="600" y="120" width="30" height="230" fill="#8e8e93"/>
+      <rect x="400" y="120" width="230" height="230" fill="url(#gloss)"/>
+    </g>
+    <circle cx="512" cy="232" r="102" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="5"/>
+
+    <!-- orelhas -->
+    <path d="M318 382 C300 300 318 228 352 214 C388 226 432 282 452 330 Z" fill="url(#ear)"/>
+    <path d="M706 382 C724 300 706 228 672 214 C636 226 592 282 572 330 Z" fill="url(#ear)"/>
+    <path d="M346 352 C338 302 348 262 364 252 C384 262 408 292 420 322 Z" fill="#c24e78" fill-opacity="0.55"/>
+    <path d="M678 352 C686 302 676 262 660 252 C640 262 616 292 604 322 Z" fill="#c24e78" fill-opacity="0.55"/>
+
+    <!-- pés -->
+    <rect x="352" y="808" width="104" height="96" rx="40" fill="#e0628c"/>
+    <rect x="568" y="808" width="104" height="96" rx="40" fill="#e0628c"/>
+
+    <!-- corpo -->
+    <ellipse cx="512" cy="590" rx="318" ry="284" fill="url(#body)"/>
+    <ellipse cx="420" cy="420" rx="150" ry="70" fill="#ffffff" fill-opacity="0.28" transform="rotate(-18 420 420)"/>
+
+    <!-- fenda (por onde a moeda entra) -->
+    <rect x="432" y="318" width="160" height="30" rx="15" fill="#7d2747"/>
+    <rect x="432" y="318" width="160" height="12" rx="6" fill="#000000" fill-opacity="0.25"/>
+
+    <!-- olhos -->
+    <circle cx="414" cy="548" r="30" fill="#2a1420"/>
+    <circle cx="610" cy="548" r="30" fill="#2a1420"/>
+    <circle cx="424" cy="537" r="10" fill="#ffffff"/>
+    <circle cx="620" cy="537" r="10" fill="#ffffff"/>
+
+    <!-- bochechas -->
+    <ellipse cx="350" cy="640" rx="46" ry="28" fill="#ff5f92" fill-opacity="0.35"/>
+    <ellipse cx="674" cy="640" rx="46" ry="28" fill="#ff5f92" fill-opacity="0.35"/>
+
+    <!-- focinho -->
+    <ellipse cx="512" cy="672" rx="118" ry="84" fill="url(#snout)"/>
+    <ellipse cx="512" cy="672" rx="118" ry="84" fill="none" stroke="#d65a86" stroke-opacity="0.6" stroke-width="5"/>
+    <ellipse cx="470" cy="676" rx="17" ry="27" fill="#a3355e"/>
+    <ellipse cx="554" cy="676" rx="17" ry="27" fill="#a3355e"/>
+    <ellipse cx="490" cy="628" rx="50" ry="16" fill="#ffffff" fill-opacity="0.35"/>
+  </g>
+</svg>

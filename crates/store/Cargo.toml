@@ -1,0 +1,14 @@
+[package]
+name = "acervo-store"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+acervo-index = { path = "../index" }
+serde.workspace = true
+bincode = "1.3"
+zstd = "0.13"
+
+[dev-dependencies]
+acervo-classify = { path = "../classify" }
+tempfile = "3"

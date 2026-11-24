@@ -1,0 +1,226 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* ---- Base ---- */
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-feature-settings: "cv11", "ss03";
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fora do Tauri (navegador de desenvolvimento) não há Acrylic: um fundo substituto. */
+html:not(.is-tauri) body {
+  background: var(--ground-fallback);
+}
+
+body {
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--separator) transparent;
+}
+
+/* ---- Janela ---- */
+
+.window {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 36px 1fr;
+  background: var(--ground);
+}
+
+/* Classes próprias na camada de componentes, para os utilitários do Tailwind poderem sobrescrevê-las. */
+@layer components {
+/* ---- Vidro ---- */
+
+.glass,
+.glass-strong {
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge-low);
+  box-shadow:
+    inset 0 1px 0 var(--glass-shine),
+    inset 0 0 0 1px color-mix(in srgb, var(--glass-edge) 40%, transparent),
+    var(--glass-shadow);
+}
+
+.glass-strong {
+  background: var(--glass-fill-strong);
+}
+
+/* ---- Cápsula de armazenamento ---- */
+
+/* O tubo: vidro com aro especular permanente; o líquido fica 2px para dentro. */
+.capsule {
+  position: relative;
+  height: 16px;
+  padding: 2px;
+  border-radius: var(--radius-capsule);
+  background: var(--capsule-track);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px var(--glass-edge-low),
+    0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* O líquido: termina arredondado, como um menisco, antes da parte livre do tubo. */
+.capsule-liquid {
+  display: flex;
+  height: 100%;
+  border-radius: var(--radius-capsule);
+  overflow: hidden;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.capsule-segment {
+  position: relative;
+  height: 100%;
+  background-color: color-mix(in srgb, var(--seg-color) 82%, transparent);
+  /* Corpo de vidro tingido: mais claro em cima, mais denso embaixo */
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.55);
+  transition: filter var(--dur-fast) var(--ease-out);
+}
+
+.capsule-segment:last-child {
+  box-shadow: none;
+}
+
+.capsule[data-hovering="true"] .capsule-segment:not([data-active="true"]) {
+  filter: saturate(0.55) opacity(0.55);
+}
+
+/* Reflexo especular que acompanha o cursor */
+/* Faixa de brilho fixa ao longo do tubo */
+.capsule-shine {
+  position: absolute;
+  inset: 3px 8px auto;
+  height: 4px;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: var(--radius-capsule);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.05));
+  opacity: 0.7;
+}
+
+/* Brilho que acompanha o cursor, só enquanto ele está sobre a cápsula */
+.capsule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(80px 20px at var(--mx, 50%) 0%, rgba(255, 255, 255, 0.7), transparent 75%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.capsule:hover::after {
+  opacity: 1;
+}
+
+.capsule-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 30%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: capsule-scan 1.6s var(--ease-out) infinite;
+}
+
+@keyframes capsule-scan {
+  from {
+    background-position: -40% 0;
+  }
+  to {
+    background-position: 140% 0;
+  }
+}
+
+/* ---- Ao vivo ---- */
+
+.live-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--cat-dados_apps);
+  box-shadow: inset 0 0.5px 0 rgba(255, 255, 255, 0.5);
+}
+
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: var(--cat-dados_apps);
+  opacity: 0;
+  animation: live-halo 2.4s var(--ease-out) infinite;
+}
+
+@keyframes live-halo {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.45;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsule-scan,
+  .live-dot::after {
+    animation: none;
+  }
+}
+}

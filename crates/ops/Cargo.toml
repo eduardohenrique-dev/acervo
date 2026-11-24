@@ -1,0 +1,13 @@
+[package]
+name = "acervo-ops"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+acervo-classify = { path = "../classify" }
+serde.workspace = true
+windows.workspace = true
+windows-core = "0.61"
+
+[dev-dependencies]
+tempfile = "3"

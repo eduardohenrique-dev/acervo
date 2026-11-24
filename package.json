@@ -1,0 +1,12 @@
+{
+  "name": "acervo",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@tauri-apps/cli": "^2.12.4"
+  }
+}

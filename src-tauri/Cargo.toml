@@ -1,0 +1,23 @@
+[package]
+name = "acervo"
+description = "Armazenamento do PC por categorias"
+edition.workspace = true
+version.workspace = true
+
+[lib]
+name = "acervo_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde.workspace = true
+serde_json.workspace = true
+windows.workspace = true
+acervo-classify = { path = "../crates/classify" }
+acervo-index = { path = "../crates/index" }
+acervo-store = { version = "0.1.0", path = "../crates/store" }
+acervo-ops = { version = "0.1.0", path = "../crates/ops" }
+tauri-plugin-dialog = "2"
